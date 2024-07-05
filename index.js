@@ -30,7 +30,12 @@ app.post('/api/referral', async (req, res) => {
 
     try {
         const referral = await prisma.referral.create({
-            data: { referrer: yourName, referee: friendName, email: friendEmail }
+            data: {
+                referrer: yourName,
+                referee: friendName,
+                email: friendEmail,
+                recommendedCourse: recommendedCourse
+            }
         });
 
         const transporter = nodemailer.createTransport({
@@ -45,11 +50,12 @@ app.post('/api/referral', async (req, res) => {
             from: process.env.EMAIL_USER,
             to: friendEmail,
             subject: 'Learn & Earn: You Have Been Referred',
-            text: `Hi ${friendName}, \n\n${yourName} has referred you to our course.\n\nBest regards, \nAccredian\n\nCheck out the courses: https://accredian.com/`,
+            text: `Hi ${friendName}, \n\n${yourName} has referred you to our course.\n\nRecommended Course: ${recommendedCourse}\nYou must check out this recommended course!\n\nBest regards, \nAccredian\n\nCheck out the courses: https://accredian.com/`,
             html: `
                 <p>Hi ${friendName},</p>
                 <p>${yourName} has referred you to our course.</p>
                 <p>Recommended Course: ${recommendedCourse}</p>
+                <p>You must check out this recommended course!</p>
                 <p>Best regards,<br>Accredian</p>
                 <p><a href="https://accredian.com/">Check out the courses</a></p>
             `,
