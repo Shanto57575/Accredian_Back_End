@@ -14,6 +14,10 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.status(200).json({ message: "Accredian API IS WORKING FINE!" })
+})
+
 app.post('/api/referral', async (req, res) => {
     const { yourName, yourEmail, friendName, friendEmail } = req.body;
 
