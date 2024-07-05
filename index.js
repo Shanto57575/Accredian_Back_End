@@ -22,9 +22,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/referral', async (req, res) => {
-    const { yourName, yourEmail, friendName, friendEmail } = req.body;
+    const { yourName, yourEmail, friendName, friendEmail, recommendedCourse } = req.body;
 
-    if (!yourName || !yourEmail || !friendName || !friendEmail) {
+    if (!yourName || !yourEmail || !friendName || !friendEmail || !recommendedCourse) {
         return res.status(400).send({ error: "All fields are required" });
     }
 
@@ -49,6 +49,7 @@ app.post('/api/referral', async (req, res) => {
             html: `
                 <p>Hi ${friendName},</p>
                 <p>${yourName} has referred you to our course.</p>
+                <p>Recommended Course: ${recommendedCourse}</p>
                 <p>Best regards,<br>Accredian</p>
                 <p><a href="https://accredian.com/">Check out the courses</a></p>
             `,
