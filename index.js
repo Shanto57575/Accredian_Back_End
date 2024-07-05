@@ -6,11 +6,14 @@ import cors from 'cors';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://accredian-front-end.vercel.app/']
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -74,4 +77,4 @@ app.post('/api/referral', async (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`);
-})
+});
