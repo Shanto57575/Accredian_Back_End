@@ -11,7 +11,7 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://accredian-front-end.vercel.app/']
+    origin: ['http://localhost:5173', 'https://accredian-front-end.vercel.app']
 }));
 
 app.use(express.json());
