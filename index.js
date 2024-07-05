@@ -6,17 +6,17 @@ import cors from 'cors';
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000
 const app = express();
 const prisma = new PrismaClient();
-const PORT = process.env.PORT || 3000;
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: "Accredian API IS WORKING FINE!" })
-})
+    res.status(200).json({ message: "Accredian API IS WORKING FINE!" });
+});
 
 app.post('/api/referral', async (req, res) => {
     const { yourName, yourEmail, friendName, friendEmail } = req.body;
@@ -73,5 +73,5 @@ app.post('/api/referral', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Accredian is listening on PORT : ${PORT}`);
-});
+    console.log(`App is running on port ${PORT}`);
+})

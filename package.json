@@ -5,9 +5,10 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
 		"dev": "nodemon index.js",
-		"start": "npm run dev"
+		"build": "prisma generate",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
 	"author": "Sh@nto",

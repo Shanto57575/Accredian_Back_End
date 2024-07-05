@@ -1,9 +1,18 @@
 {
+	"version": 2,
 	"builds": [
 		{
-			"src": "api/*.js",
-			"use": "@vercel/node",
-			"config": { "prisma": true }
+			"src": "index.js",
+			"use": "@vercel/node"
 		}
-	]
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "index.js"
+		}
+	],
+	"env": {
+		"PRISMA_GENERATE": "true"
+	}
 }
